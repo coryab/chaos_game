@@ -2,6 +2,10 @@
 
 Mail: [cory@balaton.dev](mailto:cory@balaton.dev)
 
+## Libraries
+
+- matplotplusplus
+
 ## Compiling
 
 The steps described here work for Linux systems. The same steps may work on MacOS, but I haven't tested that. For Windows, other steps may be necessary.
