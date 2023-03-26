@@ -2,13 +2,13 @@
 
 Mail: [cory@balaton.dev](mailto:cory@balaton.dev)
 
-## Libraries
-
-- [Matplot++](https://alandefreitas.github.io/matplotplusplus/)
-
 Read about the chaos game [here](https://en.wikipedia.org/wiki/Chaos_game).
 
 Read about the sierpinski triangle [here](https://en.wikipedia.org/wiki/Sierpiński_triangle).
+
+## Libraries
+
+- [Matplot++](https://alandefreitas.github.io/matplotplusplus/)
 
 ## Compiling
 
