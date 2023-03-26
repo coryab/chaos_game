@@ -9,9 +9,10 @@ namespace plt = matplot;
 
 int main() {
 
+	// Chaos game with a triangle
     ChaosGame cg(3, 0.5);
 
-    cg.iterate(10000, 5);
+    cg.iterate(10000);
 
     cg.show();
 
