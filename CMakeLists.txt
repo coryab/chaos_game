@@ -18,13 +18,13 @@ if(NOT matplotplusplus_POPULATED)
   add_subdirectory(${matplotplusplus_SOURCE_DIR} ${matplotplusplus_BINARY_DIR} EXCLUDE_FROM_ALL)
 endif()
 
-
-
 add_library(
   ChaosGame
   classes/ChaosGame.hpp
   classes/ChaosGame.cpp
 )
+
+target_link_libraries(ChaosGame PUBLIC matplot)
 
 add_executable(main main.cpp)
 
