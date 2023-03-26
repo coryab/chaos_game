@@ -29,6 +29,10 @@ ChaosGame::ChaosGame(int n, double r) {
     this->n = n;
     this->r = r;
     this->ngonPoints = generateNgon();
+
+	// Initialize vector
+	std::vector<std::vector<double>> p(2);
+	this->points = p;
 }
 
 
@@ -68,13 +72,18 @@ std::vector<double> ChaosGame::startingPoint() {
     std::vector<double> weights(this->n);
     std::generate(weights.begin(), weights.end(), mt);
 
-    double s = std::accumulate(weights.begin(), weights.end(), decltype(weights)::value_type(0));
+    double s = std::accumulate(weights.begin(), weights.end(), 
+							   decltype(weights)::value_type(0));
     auto normalize = [&s](double num) { return num/s; };
     std::transform(weights.begin(), weights.end(), weights.begin(), normalize);
 
     // Take the inner product of the weights and the n-gon points.
-    double x_coord = std::inner_product(this->ngonPoints[0].begin(), this->ngonPoints[0].end(), weights.begin(), 0.0);
-    double y_coord = std::inner_product(this->ngonPoints[1].begin(), this->ngonPoints[1].end(), weights.begin(), 0.0);
+    double x_coord = std::inner_product(this->ngonPoints[0].begin(), 
+										this->ngonPoints[0].end(),
+										weights.begin(), 0.0);
+    double y_coord = std::inner_product(this->ngonPoints[1].begin(), 
+										this->ngonPoints[1].end(), 
+										weights.begin(), 0.0);
 
     return {x_coord, y_coord};
 }
@@ -98,25 +107,30 @@ void ChaosGame::iterate(int n, int discard) {
     double x;
     double y;
 
+	// Iterate, but don't keep the first points.
     for (int i = 0; i < discard; i++) {
         rIndex = mt() % this->n;
         x = this->r * p[0] + (1 - this->r) * this->ngonPoints[0][rIndex];
         y = this->r * p[1] + (1 - this->r) * this->ngonPoints[1][rIndex];
     }
 
-    this->points.insert(this->points.end(), {std::vector<double>{x}, std::vector<double>{y}});
+	// Push the first value into the vector
+    this->points[0].push_back({x});
+	this->points[1].push_back({y});
     this->color.push_back(rIndex);
 
     auto nextColor = this->color.back();
 
+	// Generate the rest of the points
     for (int i = 1; i < n; i++) {
         rIndex = mt() % this->n;
-        this->points[0].push_back({this->r * this->points[0][i-1] + (1 - this->r) * this->ngonPoints[0][rIndex]});
-        this->points[1].push_back({this->r * this->points[1][i-1] + (1 - this->r) * this->ngonPoints[1][rIndex]});
+        this->points[0].push_back({this->r * this->points[0][i-1] 
+							+ (1 - this->r) * this->ngonPoints[0][rIndex]});
+        this->points[1].push_back({this->r * this->points[1][i-1] 
+							+ (1 - this->r) * this->ngonPoints[1][rIndex]});
         
         this->color.push_back((rIndex + this->color.back())/2);
     }
-
 }
 
 
