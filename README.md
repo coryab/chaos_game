@@ -4,13 +4,23 @@ Mail: [cory@balaton.dev](mailto:cory@balaton.dev)
 
 ## Libraries
 
-- matplotplusplus
+- [Matplot++](https://alandefreitas.github.io/matplotplusplus/)
+
+Read about the chaos game [here](https://en.wikipedia.org/wiki/Chaos_game).
+
+Read about the sierpinski triangle [here](https://en.wikipedia.org/wiki/Sierpiński_triangle).
 
 ## Compiling
 
-The steps described here work for Linux systems. The same steps may work on MacOS, but I haven't tested that. For Windows, other steps may be necessary.
+The steps below should for most Linux systems. I have tested it using Fedora.
 
-### One time only step
+Matplot++ uses gnuplot, so make sure that you have it installed on your system. On Fedora, you can install it like this:
+
+	sudo dnf install gnuplot
+
+For MacOS and Windows, other steps are most likely necessary.
+
+### One time step
 
 I would recommend creating a new directory within the project called **build** and then open a terminal inside that directory.
 Then you can run this command to generate a **MakeFile**:
@@ -27,3 +37,5 @@ Whenever you want to compile the code, just run this command inside the build di
 After compiling the code, there should be a file called **main** inside the build directory. To execute it, just run:
 
     ./main
+
+You should then see a sierpinski triangle, and when the program is done, it will save the image.
